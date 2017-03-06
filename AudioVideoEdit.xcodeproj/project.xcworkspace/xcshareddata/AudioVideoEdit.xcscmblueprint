@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BFACFA4D91219410D091E27F79DA166665000A3B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BFACFA4D91219410D091E27F79DA166665000A3B" : 9223372036854775807,
+    "FA6B179CD4F6FEF0B3097F522F1903E73E9570F9" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "19AC58D8-97CE-4FE5-AB97-76F5AEF0DED9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BFACFA4D91219410D091E27F79DA166665000A3B" : "AudioVideoEdit\/",
+    "FA6B179CD4F6FEF0B3097F522F1903E73E9570F9" : "AudioVideoEdit\/AudioVideoEdit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AudioVideoEdit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AudioVideoEdit.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/D-james\/AudioVideoEdit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BFACFA4D91219410D091E27F79DA166665000A3B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/D-james\/AudioVideoEdit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FA6B179CD4F6FEF0B3097F522F1903E73E9570F9"
+    }
+  ]
+}

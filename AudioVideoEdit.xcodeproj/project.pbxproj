@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFF9C6121E6CF196008ED9FC /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF9C6111E6CF196008ED9FC /* RecordViewController.m */; };
 		AFFFB9B11E518B050008DEB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9B01E518B050008DEB5 /* main.m */; };
 		AFFFB9B41E518B050008DEB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9B31E518B050008DEB5 /* AppDelegate.m */; };
 		AFFFB9B71E518B050008DEB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9B61E518B050008DEB5 /* ViewController.m */; };
@@ -23,8 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AFF9C6101E6CF196008ED9FC /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
-		AFF9C6111E6CF196008ED9FC /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		AFFFB9AC1E518B050008DEB5 /* AudioVideoEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioVideoEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFFB9B01E518B050008DEB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AFFFB9B21E518B050008DEB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,8 +83,6 @@
 				AFFFB9CD1E518C0F0008DEB5 /* FinshViewController.m */,
 				AFFFB9CF1E518C570008DEB5 /* EditAudioVideo.h */,
 				AFFFB9D01E518C570008DEB5 /* EditAudioVideo.m */,
-				AFF9C6101E6CF196008ED9FC /* RecordViewController.h */,
-				AFF9C6111E6CF196008ED9FC /* RecordViewController.m */,
 				AFFFB9B81E518B050008DEB5 /* Main.storyboard */,
 				AFFFB9BE1E518B050008DEB5 /* Assets.xcassets */,
 				AFFFB9C01E518B050008DEB5 /* LaunchScreen.storyboard */,
@@ -189,7 +184,6 @@
 				AFFFB9CB1E518BE10008DEB5 /* EditViewController.m in Sources */,
 				AFFFB9D11E518C570008DEB5 /* EditAudioVideo.m in Sources */,
 				AFFFB9CE1E518C0F0008DEB5 /* FinshViewController.m in Sources */,
-				AFF9C6121E6CF196008ED9FC /* RecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
