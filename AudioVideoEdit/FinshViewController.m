@@ -29,7 +29,7 @@
     
     UIView *playView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 400)];
     [self.view addSubview:playView];
-    playView.backgroundColor = [UIColor redColor];
+//    playView.backgroundColor = [UIColor redColor];
 
     AVPlayerItem *playItem = [[AVPlayerItem alloc]initWithURL:self.playURL];
     

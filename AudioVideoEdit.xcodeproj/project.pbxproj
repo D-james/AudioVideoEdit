@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AD0B1141ECDE12700FDDD0A /* 123.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AD0B1131ECDE12700FDDD0A /* 123.mp3 */; };
 		AFFFB9B11E518B050008DEB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9B01E518B050008DEB5 /* main.m */; };
 		AFFFB9B41E518B050008DEB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9B31E518B050008DEB5 /* AppDelegate.m */; };
 		AFFFB9B71E518B050008DEB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9B61E518B050008DEB5 /* ViewController.m */; };
@@ -17,11 +18,11 @@
 		AFFFB9CB1E518BE10008DEB5 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9CA1E518BE10008DEB5 /* EditViewController.m */; };
 		AFFFB9CE1E518C0F0008DEB5 /* FinshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9CD1E518C0F0008DEB5 /* FinshViewController.m */; };
 		AFFFB9D11E518C570008DEB5 /* EditAudioVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFFB9D01E518C570008DEB5 /* EditAudioVideo.m */; };
-		AFFFB9D41E5192FD0008DEB5 /* 123.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AFFFB9D21E5192FD0008DEB5 /* 123.mp3 */; };
 		AFFFB9D51E5192FD0008DEB5 /* abc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AFFFB9D31E5192FD0008DEB5 /* abc.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AD0B1131ECDE12700FDDD0A /* 123.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 123.mp3; sourceTree = "<group>"; };
 		AFFFB9AC1E518B050008DEB5 /* AudioVideoEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioVideoEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFFB9B01E518B050008DEB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AFFFB9B21E518B050008DEB5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,7 +40,6 @@
 		AFFFB9CD1E518C0F0008DEB5 /* FinshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinshViewController.m; sourceTree = "<group>"; };
 		AFFFB9CF1E518C570008DEB5 /* EditAudioVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAudioVideo.h; sourceTree = "<group>"; };
 		AFFFB9D01E518C570008DEB5 /* EditAudioVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAudioVideo.m; sourceTree = "<group>"; };
-		AFFFB9D21E5192FD0008DEB5 /* 123.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 123.mp3; sourceTree = "<group>"; };
 		AFFFB9D31E5192FD0008DEB5 /* abc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = abc.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,8 +96,8 @@
 		AFFFB9AF1E518B050008DEB5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AFFFB9D21E5192FD0008DEB5 /* 123.mp3 */,
 				AFFFB9D31E5192FD0008DEB5 /* abc.mp4 */,
+				1AD0B1131ECDE12700FDDD0A /* 123.mp3 */,
 				AFFFB9B01E518B050008DEB5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -166,7 +166,7 @@
 				AFFFB9BF1E518B050008DEB5 /* Assets.xcassets in Resources */,
 				AFFFB9D51E5192FD0008DEB5 /* abc.mp4 in Resources */,
 				AFFFB9BA1E518B050008DEB5 /* Main.storyboard in Resources */,
-				AFFFB9D41E5192FD0008DEB5 /* 123.mp3 in Resources */,
+				1AD0B1141ECDE12700FDDD0A /* 123.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

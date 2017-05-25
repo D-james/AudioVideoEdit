@@ -14,42 +14,47 @@
     //    素材
     AVAsset *asset = [AVAsset assetWithURL:assetURL];
     AVAsset *audioAsset = [AVAsset assetWithURL:BGMPath];
+
+    CMTime duration = asset.duration;
+    CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero, duration);
     
     //    分离素材
     AVAssetTrack *videoAssetTrack = [[asset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0];//视频素材
-    AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];//音频素材
+    AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];// 背景音乐音频素材
     
-    //    编辑视频环境
+    //    创建编辑环境
     AVMutableComposition *composition = [[AVMutableComposition alloc]init];
     
     //    视频素材加入视频轨道
     AVMutableCompositionTrack *videoCompositionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    [videoCompositionTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetTrack.timeRange.duration) ofTrack:videoAssetTrack atTime:kCMTimeZero error:nil];
+    [videoCompositionTrack insertTimeRange:video_timeRange ofTrack:videoAssetTrack atTime:kCMTimeZero error:nil];
     
     //    音频素材加入音频轨道
     AVMutableCompositionTrack *audioCompositionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [audioCompositionTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetTrack.timeRange.duration) ofTrack:audioAssetTrack atTime:kCMTimeZero error:nil];
+    [audioCompositionTrack insertTimeRange:video_timeRange ofTrack:audioAssetTrack atTime:CMTimeMake(0, asset.duration.timescale) error:nil];
     
     //    是否加入视频原声
     AVMutableCompositionTrack *originalAudioCompositionTrack = nil;
     if (needOriginalVoice) {
         AVAssetTrack *originalAudioAssetTrack = [[asset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];
         originalAudioCompositionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-        [originalAudioCompositionTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAssetTrack.timeRange.duration) ofTrack:originalAudioAssetTrack atTime:kCMTimeZero error:nil];
+        [originalAudioCompositionTrack insertTimeRange:video_timeRange ofTrack:originalAudioAssetTrack atTime:kCMTimeZero error:nil];
     }
     
-    //    导出素材
+    //    创建导出素材类
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc]initWithAsset:composition presetName:AVAssetExportPresetMediumQuality];
-    
+ 
 //    音量控制
-    CMTime duration = videoAssetTrack.timeRange.duration;
-    CGFloat videoDuration = duration.value / (float)duration.timescale;
-    exporter.audioMix = [self buildAudioMixWithVideoTrack:originalAudioCompositionTrack VideoVolume:videoVolume BGMTrack:audioCompositionTrack BGMVolume:BGMVolume controlVolumeRange:CMTimeMake(0, videoDuration)];
+    exporter.audioMix = [self buildAudioMixWithVideoTrack:originalAudioCompositionTrack VideoVolume:videoVolume BGMTrack:audioCompositionTrack BGMVolume:BGMVolume controlVolumeRange:CMTimeMake(duration.value / (float)duration.timescale,1)];
+    
+    CMTime abcd = CMTimeMake( duration.value / (float)duration.timescale,1);
+  
     
 //    设置输出路径
     NSURL *outputPath = [self exporterPath];
-    exporter.outputURL = [self exporterPath];
-    exporter.outputFileType = AVFileTypeMPEG4;//指定输出格式
+    exporter.outputURL = outputPath;
+    exporter.outputFileType = AVFileTypeQuickTimeMovie;//指定输出格式
+    exporter.shouldOptimizeForNetworkUse= YES;
     
     [exporter exportAsynchronouslyWithCompletionHandler:^{
         switch ([exporter status]) {
@@ -82,7 +87,7 @@
     
 //    设置背景音乐音量
     AVMutableAudioMixInputParameters *BGMparameters = [AVMutableAudioMixInputParameters audioMixInputParametersWithTrack:BGMTrack];
-    [Videoparameters setVolume:BGMVolume atTime:volumeRange];
+    [BGMparameters setVolume:BGMVolume atTime:volumeRange];
     
 //    加入混合数组
     audioMix.inputParameters = @[Videoparameters,BGMparameters];

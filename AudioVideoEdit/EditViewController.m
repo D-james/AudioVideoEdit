@@ -17,6 +17,7 @@
 @property (strong, nonatomic) AVAudioPlayer *BGMPlayer;
 @property (strong, nonatomic) IBOutlet UISlider *originalVoiceSlide;
 @property (strong, nonatomic) IBOutlet UISlider *BGMVoiceSlider;
+@property (assign, nonatomic) CGFloat duration;
 
 @end
 
@@ -57,6 +58,7 @@
     AVAsset *asset = [AVAsset assetWithURL:[self filePathName:@"abc.mp4"]];
     CMTime duration = asset.duration;
     CGFloat videoDuration = duration.value / (float)duration.timescale;
+    self.duration = videoDuration;
     NSLog(@"%f",videoDuration);
     
 //    音频剪辑
@@ -102,8 +104,10 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.player pause];
     [super viewWillDisappear:animated];
+    
+    [self.BGMPlayer stop];
+    [self.player pause];
 }
 
 - (IBAction)synthesizeClick:(id)sender {
@@ -115,14 +119,7 @@
         [self presentViewController:finshVC animated:YES completion:nil];
         
     }];
-    
-//    [EditAudioVideo cutAudioVideoResourcePath:[self filePathName:@"abc.mp4"] startTime:3 endTime:8 complition:^(NSURL *outputPath, BOOL isSucceed) {
-//        
-//        FinshViewController *finshVC = [FinshViewController new];
-//        finshVC.playURL = outputPath;
-//        [self presentViewController:finshVC animated:YES completion:nil];
-//        
-//    }];
+
 }
 
 - (NSURL *)filePathName:(NSString *)fileName{
