@@ -34,7 +34,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
 //    添加播放层
-    UIView *playView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 400)];
+    UIView *playView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 300)];
     [self.view addSubview:playView];
     
 //    将资源路径添加到AVPlayerItem上
@@ -62,22 +62,22 @@
     NSLog(@"%f",videoDuration);
     
 //    音频剪辑
-    typeof(self) weakSelf = self;
+//    typeof(self) weakSelf = self;
     [EditAudioVideo cutAudioVideoResourcePath:[self filePathName:@"123.mp3"] startTime:0 endTime:videoDuration complition:^(NSURL *outputPath, BOOL isSucceed) {
         
 //        音频剪辑成功后，拿到剪辑后的音频路径
         NSError *error;
-        weakSelf.BGMPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:outputPath error:&error];
+        self.BGMPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:outputPath error:&error];
         
         if (error == nil) {
-            weakSelf.BGMPlayer.numberOfLoops = -1;//循环播放
-            weakSelf.BGMPlayer.volume = 0.5;
+            self.BGMPlayer.numberOfLoops = -1;//循环播放
+            self.BGMPlayer.volume = 0.5;
             
-            [weakSelf.BGMPlayer prepareToPlay];//预先加载音频到内存，播放更流畅
+            [self.BGMPlayer prepareToPlay];//预先加载音频到内存，播放更流畅
             
 //            播放音频，同时调用视频播放，实现同步播放
-            [weakSelf.BGMPlayer play];
-            [weakSelf.player play];
+            [self.BGMPlayer play];
+            [self.player play];
         }else{
             NSLog(@"%@",error);
         }
@@ -112,13 +112,18 @@
 
 - (IBAction)synthesizeClick:(id)sender {
     
-    [EditAudioVideo editVideoSynthesizeVieoPath:[self filePathName:@"abc.mp4"] BGMPath:[self filePathName:@"123.mp3"] needOriginalVoice:YES videoVolume:self.originalVoiceSlide.value BGMVolume:self.BGMVoiceSlider.value complition:^(NSURL *outputPath, BOOL isSucceed) {
-        
-        FinshViewController *finshVC = [FinshViewController new];
-        finshVC.playURL = outputPath;
-        [self presentViewController:finshVC animated:YES completion:nil];
-        
-    }];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [EditAudioVideo editVideoSynthesizeVieoPath:[self filePathName:@"abc.mp4"] BGMPath:[self filePathName:@"123.mp3"] needOriginalVoice:YES videoVolume:self.originalVoiceSlide.value BGMVolume:self.BGMVoiceSlider.value complition:^(NSURL *outputPath, BOOL isSucceed) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                FinshViewController *finshVC = [FinshViewController new];
+                finshVC.playURL = outputPath;
+                [self presentViewController:finshVC animated:YES completion:nil];
+            });
+            
+        }];
+    });
+    
 
 }
 

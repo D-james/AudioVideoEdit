@@ -17,7 +17,7 @@
 
     CMTime duration = asset.duration;
     CMTimeRange video_timeRange = CMTimeRangeMake(kCMTimeZero, duration);
-    
+
     //    分离素材
     AVAssetTrack *videoAssetTrack = [[asset tracksWithMediaType:AVMediaTypeVideo]objectAtIndex:0];//视频素材
     AVAssetTrack *audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio]objectAtIndex:0];// 背景音乐音频素材
@@ -31,7 +31,8 @@
     
     //    音频素材加入音频轨道
     AVMutableCompositionTrack *audioCompositionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [audioCompositionTrack insertTimeRange:video_timeRange ofTrack:audioAssetTrack atTime:CMTimeMake(0, asset.duration.timescale) error:nil];
+    [audioCompositionTrack insertTimeRange:video_timeRange ofTrack:audioAssetTrack atTime:kCMTimeZero error:nil];
+//    audioCompositionTrack.preferredVolume = 0;
     
     //    是否加入视频原声
     AVMutableCompositionTrack *originalAudioCompositionTrack = nil;
@@ -43,18 +44,16 @@
     
     //    创建导出素材类
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc]initWithAsset:composition presetName:AVAssetExportPresetMediumQuality];
- 
-//    音量控制
-    exporter.audioMix = [self buildAudioMixWithVideoTrack:originalAudioCompositionTrack VideoVolume:videoVolume BGMTrack:audioCompositionTrack BGMVolume:BGMVolume controlVolumeRange:CMTimeMake(duration.value / (float)duration.timescale,1)];
-    
-    CMTime abcd = CMTimeMake( duration.value / (float)duration.timescale,1);
-  
+
     
 //    设置输出路径
     NSURL *outputPath = [self exporterPath];
     exporter.outputURL = outputPath;
     exporter.outputFileType = AVFileTypeQuickTimeMovie;//指定输出格式
     exporter.shouldOptimizeForNetworkUse= YES;
+    
+    //    音量控制
+    exporter.audioMix = [self buildAudioMixWithVideoTrack:originalAudioCompositionTrack VideoVolume:videoVolume BGMTrack:audioCompositionTrack BGMVolume:BGMVolume atTime:kCMTimeZero];
     
     [exporter exportAsynchronouslyWithCompletionHandler:^{
         switch ([exporter status]) {
@@ -76,7 +75,7 @@
 }
 
 #pragma mark - 调节合成的音量
-+ (AVAudioMix *)buildAudioMixWithVideoTrack:(AVCompositionTrack *)videoTrack VideoVolume:(float)videoVolume BGMTrack:(AVCompositionTrack *)BGMTrack BGMVolume:(float)BGMVolume controlVolumeRange:(CMTime)volumeRange {
++ (AVAudioMix *)buildAudioMixWithVideoTrack:(AVCompositionTrack *)videoTrack VideoVolume:(float)videoVolume BGMTrack:(AVCompositionTrack *)BGMTrack BGMVolume:(float)BGMVolume atTime:(CMTime)volumeRange {
     
 //    创建音频混合类
     AVMutableAudioMix *audioMix = [AVMutableAudioMix audioMix];
